@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Wordscreen_window(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(789, 637)
@@ -34,61 +34,61 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.wordcard_label.setFont(font)
         self.wordcard_label.setStyleSheet("border-radius:20px;font: 25pt \"Berlin Sans FB\";\n"
-"color:rgb(255, 255, 255) ;\n"
-"background-color: rgb(85, 85, 255);")
+                                          "color:rgb(255, 255, 255) ;\n"
+                                          "background-color: rgb(85, 85, 255);")
         self.wordcard_label.setAlignment(QtCore.Qt.AlignCenter)
         self.wordcard_label.setObjectName("wordcard_label")
         self.green_button = QtWidgets.QPushButton(self.game_widget)
         self.green_button.setGeometry(QtCore.QRect(500, 520, 81, 51))
         self.green_button.setStyleSheet("border-radius:20px;\n"
-"background-color: rgb(0, 255, 127);")
+                                        "background-color: rgb(0, 255, 127);")
         self.green_button.setText("")
         self.green_button.setObjectName("green_button")
         self.red_button = QtWidgets.QPushButton(self.game_widget)
         self.red_button.setGeometry(QtCore.QRect(270, 520, 81, 51))
         self.red_button.setStyleSheet("border-radius:20px;\n"
-"background-color: rgb(255, 0, 0);")
+                                      "background-color: rgb(255, 0, 0);")
         self.red_button.setText("")
         self.red_button.setObjectName("red_button")
         self.level_label = QtWidgets.QLabel(self.game_widget)
         self.level_label.setGeometry(QtCore.QRect(20, 30, 121, 31))
         self.level_label.setStyleSheet("font: 14pt \"Berlin Sans FB\";\n"
-"\n"
-"background-color: rgb(85, 85, 255);\n"
-"color: rgb(255, 255, 255);")
+                                       "\n"
+                                       "background-color: rgb(85, 85, 255);\n"
+                                       "color: rgb(255, 255, 255);")
         self.level_label.setObjectName("level_label")
         self.total_time_label = QtWidgets.QLabel(self.game_widget)
         self.total_time_label.setGeometry(QtCore.QRect(310, 30, 191, 31))
         self.total_time_label.setStyleSheet("font: 14pt \"Berlin Sans FB\";\n"
-"\n"
-"background-color: rgb(85, 85, 255);\n"
-"color: rgb(255, 255, 255);")
+                                            "\n"
+                                            "background-color: rgb(85, 85, 255);\n"
+                                            "color: rgb(255, 255, 255);")
         self.total_time_label.setObjectName("total_time_label")
         self.remaining_word_label = QtWidgets.QLabel(self.game_widget)
         self.remaining_word_label.setGeometry(QtCore.QRect(20, 70, 251, 31))
         self.remaining_word_label.setStyleSheet("font: 14pt \"Berlin Sans FB\";\n"
-"\n"
-"background-color: rgb(85, 85, 255);\n"
-"color: rgb(255, 255, 255);")
+                                                "\n"
+                                                "background-color: rgb(85, 85, 255);\n"
+                                                "color: rgb(255, 255, 255);")
         self.remaining_word_label.setObjectName("remaining_word_label")
         self.pushButton = QtWidgets.QPushButton(self.game_widget)
         self.pushButton.setGeometry(QtCore.QRect(730, 40, 51, 51))
         self.pushButton.setStyleSheet("font: 20pt \"Berlin Sans FB\";\n"
-"color: rgb(255, 255, 255);\n"
-";border-radius:20px;\n"
-"background-color: rgb(255, 0, 0);")
+                                      "color: rgb(255, 255, 255);\n"
+                                      ";border-radius:20px;\n"
+                                      "background-color: rgb(255, 0, 0);")
         self.pushButton.setObjectName("pushButton")
         self.timer = QtWidgets.QLabel(self.game_widget)
         self.timer.setGeometry(QtCore.QRect(400, 120, 51, 51))
         self.timer.setStyleSheet("font: 30pt \"Berlin Sans FB\";\n"
-"color: rgb(0, 0, 127);\n"
-";border-radius:20px;\n"
-"background-color: rgb(255, 255, 255);")
+                                 "color: rgb(0, 0, 127);\n"
+                                 ";border-radius:20px;\n"
+                                 "background-color: rgb(255, 255, 255);")
         self.timer.setObjectName("timer")
         self.label = QtWidgets.QLabel(self.game_widget)
         self.label.setGeometry(QtCore.QRect(-10, 20, 851, 91))
         self.label.setStyleSheet("\n"
-"background-color: rgb(85, 85, 255);")
+                                 "background-color: rgb(85, 85, 255);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.label.raise_()
@@ -108,14 +108,18 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Words game"))
-        self.wordcard_label.setToolTip(_translate("MainWindow", "<html><head/><body><p>asd</p></body></html>"))
-        self.wordcard_label.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>English word</p></body></html>"))
+        self.wordcard_label.setToolTip(_translate(
+            "MainWindow", "<html><head/><body><p>asd</p></body></html>"))
+        self.wordcard_label.setWhatsThis(_translate(
+            "MainWindow", "<html><head/><body><p>English word</p></body></html>"))
         self.wordcard_label.setText(_translate("MainWindow", "Dutch\n"
-"\n"
-"Word"))
+                                               "\n"
+                                               "Word"))
         self.level_label.setText(_translate("MainWindow", "Level : "))
-        self.total_time_label.setText(_translate("MainWindow", "Total Time : "))
-        self.remaining_word_label.setText(_translate("MainWindow", "Remaining  word : "))
+        self.total_time_label.setText(
+            _translate("MainWindow", "Total Time : "))
+        self.remaining_word_label.setText(
+            _translate("MainWindow", "Remaining  word : "))
         self.pushButton.setText(_translate("MainWindow", "<--"))
         self.timer.setText(_translate("MainWindow", " 3"))
 
@@ -124,7 +128,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Wordscreen_window()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
