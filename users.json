@@ -1,11 +1,26 @@
 {
   "omer": {
-    "level": 7
+    "level": 4
   },
   "yusuf": {
     "level": 4
   },
   "esra": {
     "level": 1
+  },
+  "kadir": {
+    "level": 5
+  },
+  "sedat": {
+    "level": 8
+  },
+  "ben": {
+    "level": 1
+  },
+  "asdadasda": {
+    "level": 1
+  },
+  "bahadir": {
+    "level": 6
   }
 }

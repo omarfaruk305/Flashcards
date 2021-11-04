@@ -1,6 +1,8 @@
 import json
 from os import name
 
+from PyQt5.sip import wrapper
+
 
 class Users:
 
@@ -15,6 +17,17 @@ class Users:
 
     @classmethod
     def save_to_json(cls, self):
+        """data is stored as in the example : {
+        "omer": {
+            "level": 7
+        },
+        "yusuf": {
+            "level": 4
+        },
+        "esra": {
+            "level": 1
+        }
+        }"""
         cls.readjson_user()
         cls.users_dict[self.name] = {"level": self.level}
         with open("users.json", "w") as f:
@@ -24,5 +37,3 @@ class Users:
         for names in Users.users_dict.keys():
             if self.name == names:
                 return True
-            else:
-                pass

@@ -66,7 +66,7 @@ class Welcomescreen_window(object):
         self.username_label.setText(
             _translate("MainWindow", "Username : "))
         self.login_button.setText(_translate("MainWindow", "Login"))
-        self.signup_button.setText(_translate("MainWindow", "Sign in"))
+        self.signup_button.setText(_translate("MainWindow", "Sign up"))
         self.signup_button.clicked.connect(self.signup)
         self.login_button.clicked.connect(self.login)
 
@@ -76,20 +76,28 @@ class Welcomescreen_window(object):
         Users.readjson_user()
         if self.user.checkname():
             self.error_label.setStyleSheet(
-                "color: rgb(255, 255, 0);font: 12pt \"Berlin Sans FB;\"\n")
+                "color: rgb(255, 255, 0);font: 10pt \"Berlin Sans FB;\"\n")
             self.error_label.setText(_translate(
-                "MainWindow", "You have account . Try login"))
+                "MainWindow", "You have an account already.Login"))
         else:
             self.user.save_to_json(self.user)
             self.error_label.setStyleSheet(
-                "color: rgb(255, 255, 0);font: 12pt \"Berlin Sans FB;\"\n")
+                "color: rgb(255, 255, 0);font: 10pt \"Berlin Sans FB;\"\n")
             self.error_label.setText(_translate(
                 "MainWindow", "Congrats ! Try login now"))
 
     def login(self):
         _translate = QtCore.QCoreApplication.translate
-        self.user = Users(self.lineEdit_2.text())
         Users.readjson_user()
+        name = self.lineEdit_2.text()
+        for i, j in Users.users_dict.items():
+            if name == i:
+                level = j["level"]
+                self.user = Users(name, level)
+                break
+            else:
+                self.user = Users(name)
+
         if self.user.checkname():
             self.menuscreen = Menuscreen_window()
             self.menuscreen.setupUi(MainWindow)
@@ -98,7 +106,7 @@ class Welcomescreen_window(object):
                 "Level : {}".format(self.user.level))
         else:
             self.error_label.setStyleSheet(
-                "color: rgb(195, 0, 0);font: 12pt \"Berlin Sans FB;\"\n")
+                "color: rgb(195, 0, 0);font: 10pt \"Berlin Sans FB;\"\n")
             self.error_label.setText(_translate(
                 "MainWindow", "You Dont Have Account , Signin first."))
 
