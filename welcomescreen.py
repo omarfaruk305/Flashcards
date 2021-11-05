@@ -1,10 +1,17 @@
 
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from menuscreen import Menuscreen_window
 from user import Users
+from level import Level
 
 
 class Welcomescreen_window(object):
+    def OpenWindow(self):
+        self.MainWindow = QtWidgets.QMainWindow()
+        self.menuscreenui = Menuscreen_window()
+        self.menuscreenui.setupUi(self.MainWindow)
+        self.MainWindow.show()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -99,11 +106,11 @@ class Welcomescreen_window(object):
                 self.user = Users(name)
 
         if self.user.checkname():
-            self.menuscreen = Menuscreen_window()
-            self.menuscreen.setupUi(MainWindow)
-            self.menuscreen.username_label.setText(self.user.name.upper())
-            self.menuscreen.level_label.setText(
+            self.OpenWindow()
+            self.menuscreenui.username_label.setText(self.user.name.upper())
+            self.menuscreenui.level_label.setText(
                 "Level : {}".format(self.user.level))
+
         else:
             self.error_label.setStyleSheet(
                 "color: rgb(195, 0, 0);font: 10pt \"Berlin Sans FB;\"\n")
@@ -112,10 +119,9 @@ class Welcomescreen_window(object):
 
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Welcomescreen_window()
-    ui.setupUi(MainWindow)
+    welcomescreenui = Welcomescreen_window()
+    welcomescreenui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

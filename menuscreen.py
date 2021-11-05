@@ -1,11 +1,19 @@
 
 
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 from wordscreen import Wordscreen_window
 
 
 class Menuscreen_window(object):
+    def OpenWindow(self):
+        self.MainWindow = QtWidgets.QMainWindow()
+        self.wordscreenui = Wordscreen_window()
+        self.wordscreenui.setupUi(self.MainWindow)
+        self.MainWindow.show()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(789, 637)
@@ -71,7 +79,7 @@ class Menuscreen_window(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        # QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -86,15 +94,13 @@ class Menuscreen_window(object):
         self.playbutton.clicked.connect(self.play)
 
     def play(self):
-        self.wordscreen = Wordscreen_window()
-        self.wordscreen.setupUi(MainWindow)
+        self.OpenWindow()
 
 
-if __name__ == "__main__":
-    import sys
+"""if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Menuscreen_window()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_())"""

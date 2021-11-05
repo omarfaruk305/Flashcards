@@ -1,8 +1,6 @@
 import json
 from os import name
 
-from PyQt5.sip import wrapper
-
 
 class Users:
 
@@ -24,7 +22,7 @@ class Users:
         "yusuf": {
             "level": 4
         },
-        "esra": {
+        "ayse": {
             "level": 1
         }
         }"""
