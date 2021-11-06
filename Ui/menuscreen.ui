@@ -106,7 +106,7 @@ color: rgb(255, 255, 255);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border-radius:20px;
-font: 40pt &quot;Berlin Sans FB&quot;;
+font: 34pt &quot;Berlin Sans FB&quot;;
 background-color: rgb(255, 255, 255);
 color :rgb(0, 0, 127)</string>
      </property>
@@ -145,7 +145,7 @@ color: rgb(255, 255, 255);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-radius:20px;font: 40pt &quot;Berlin Sans FB&quot;;
+      <string notr="true">border-radius:20px;font: 34pt &quot;Berlin Sans FB&quot;;
 background-color: rgb(255, 255, 255);
 color :rgb(0, 0, 127)</string>
      </property>

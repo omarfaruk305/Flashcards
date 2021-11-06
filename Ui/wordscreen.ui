@@ -39,12 +39,15 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(227, 227, 227);</string>
+     <string notr="true">background-color:rgb(255, 253, 251)</string>
     </property>
     <widget class="QLabel" name="wordcard_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>130</x>
        <y>180</y>
        <width>531</width>
        <height>301</height>
@@ -82,7 +85,7 @@ Word</string>
     <widget class="QPushButton" name="green_button">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>480</x>
        <y>520</y>
        <width>81</width>
        <height>51</height>
@@ -90,16 +93,29 @@ Word</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border-radius:20px;
-background-color: rgb(0, 255, 127);</string>
+background-color: rgb(255, 255, 255)</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>check.png</normaloff>
+       <normalon>check.png</normalon>
+       <disabledon>check.png</disabledon>
+       <activeon>check.png</activeon>check.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>80</width>
+       <height>80</height>
+      </size>
      </property>
     </widget>
     <widget class="QPushButton" name="red_button">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>250</x>
        <y>520</y>
        <width>81</width>
        <height>51</height>
@@ -107,10 +123,21 @@ background-color: rgb(0, 255, 127);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border-radius:20px;
-background-color: rgb(255, 0, 0);</string>
+background-color: rgb(255, 255, 255)</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>cancel (2).png</normalon>
+      </iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>80</width>
+       <height>80</height>
+      </size>
      </property>
     </widget>
     <widget class="QLabel" name="level_label">
@@ -186,13 +213,23 @@ color: rgb(255, 255, 255);
 background-color: rgb(255, 0, 0);</string>
      </property>
      <property name="text">
-      <string>&lt;--</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>back.png</normaloff>back.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>55</width>
+       <height>55</height>
+      </size>
      </property>
     </widget>
     <widget class="QLabel" name="timer">
      <property name="geometry">
       <rect>
-       <x>400</x>
+       <x>370</x>
        <y>120</y>
        <width>51</width>
        <height>51</height>

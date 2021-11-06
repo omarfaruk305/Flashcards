@@ -78,14 +78,23 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="login_button">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>350</x>
        <y>250</y>
        <width>131</width>
        <height>41</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Berlin Sans FB</family>
+       <pointsize>19</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">font: 25pt &quot;Berlin Sans FB&quot;;
+      <string notr="true">font: 19pt &quot;Berlin Sans FB&quot;;
 background-color: rgb(255, 255, 255);
 color :rgb(0, 0, 127);
 border-radius:20px</string>
@@ -104,7 +113,7 @@ border-radius:20px</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 25pt &quot;Berlin Sans FB&quot;;
+      <string notr="true">font: 19pt &quot;Berlin Sans FB&quot;;
 background-color: rgb(255, 255, 255);
 color :rgb(0, 0, 127);
 border-radius:20px</string>
@@ -119,7 +128,7 @@ border-radius:20px</string>
        <x>260</x>
        <y>180</y>
        <width>191</width>
-       <height>22</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -132,7 +141,7 @@ border-radius:20px</string>
       <rect>
        <x>260</x>
        <y>210</y>
-       <width>151</width>
+       <width>311</width>
        <height>16</height>
       </rect>
      </property>
