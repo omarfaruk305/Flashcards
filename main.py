@@ -1,7 +1,8 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from user import Users
-from level import Level
+
+user = Users()
 
 
 class Welcomescreen_window(object):
@@ -76,6 +77,14 @@ class Welcomescreen_window(object):
         self.signup_button.clicked.connect(self.signup)
         self.login_button.clicked.connect(self.login)
 
+    def setmenuscreenforuser(self):
+        menuscreenui.setupUi(MainWindow)
+        menuscreenui.username_label.setText(user.name.upper())
+        menuscreenui.level_label.setText(
+            "Level : {}".format(user.level))
+        menuscreenui.progress_progressBar.setProperty(
+            "value", user.totalprogress())
+
     def signup(self):
         _translate = QtCore.QCoreApplication.translate
         self.user = Users(self.lineEdit_2.text())
@@ -94,22 +103,17 @@ class Welcomescreen_window(object):
 
     def login(self):
         _translate = QtCore.QCoreApplication.translate
-        Users.readjson_user()
+        user.readjson_user()
         name = self.lineEdit_2.text()
-        for i, j in Users.users_dict.items():
+        for i, j in user.users_dict.items():
             if name == i:
                 level = j["level"]
-                self.user = Users(name, level)
+                user.name = name
+                user.level = level
                 break
-            else:
-                self.user = Users(name)
 
-        if self.user.checkname():
-            self.menuscreenui = Menuscreen_window()
-            self.menuscreenui.setupUi(MainWindow)
-            self.menuscreenui.username_label.setText(self.user.name.upper())
-            self.menuscreenui.level_label.setText(
-                "Level : {}".format(self.user.level))
+        if user.checkname():
+            self.setmenuscreenforuser()
 
         else:
             self.error_label.setStyleSheet(
@@ -192,10 +196,14 @@ class Menuscreen_window(object):
         self.quitbutton.setText(_translate("MainWindow", "Quit"))
         self.level_label.setText(_translate("MainWindow", "Level :"))
         self.playbutton.clicked.connect(self.play)
+        self.quitbutton.clicked.connect(self.quit)
 
     def play(self):
-        self.wordscreenui = Wordscreen_window()
-        self.wordscreenui.setupUi(MainWindow)
+        wordscreenui.setupUi(MainWindow)
+
+    def quit(self):
+        Users.save_to_json(user)
+        sys.exit(app.exec_)
 
 
 class Wordscreen_window(object):
@@ -334,14 +342,22 @@ class Wordscreen_window(object):
         self.timer.setText(_translate("MainWindow", " 3"))
         self.pushButton.clicked.connect(self.back)
 
+        for id in user.get_level_words():
+            self.wordcard_label.setText(_translate(
+                "MainWindow", {user.wordsdata[id]["Dutch"]}))
+
     def back(self):
         self.menuscreenui = Menuscreen_window()
         self.menuscreenui.setupUi(MainWindow)
+        Users.save_to_json(user)
+        welcomescreenui.setmenuscreenforuser()
 
 
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
 welcomescreenui = Welcomescreen_window()
+menuscreenui = Menuscreen_window()
+wordscreenui = Wordscreen_window()
 welcomescreenui.setupUi(MainWindow)
 MainWindow.show()
 sys.exit(app.exec_())

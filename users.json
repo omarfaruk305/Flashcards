@@ -1,6 +1,6 @@
 {
   "omer": {
-    "level": 4
+    "level": 2
   },
   "yusuf": {
     "level": 4
@@ -30,6 +30,9 @@
     "level": 1
   },
   "omerasdasd": {
+    "level": 1
+  },
+  "deneme": {
     "level": 1
   }
 }

@@ -4,7 +4,7 @@ from os import name
 
 class Users:
 
-    def __init__(self, name, level=1):
+    def __init__(self, name="Name", level=1):
         self.name = name
         self.level = level
 
@@ -35,3 +35,27 @@ class Users:
         for names in Users.users_dict.keys():
             if self.name == names:
                 return True
+   # --------------------------About Level----------------------------
+
+    def readjsonword(self):
+        with open("words.json") as f:
+            self.wordsdata = json.load(f)
+        self.wordsid = [i for i in range(1, len(self.wordsdata.keys()))]
+
+    def get_level_words(self):
+        self.readjsonword()
+        return self.wordsid[(self.level*20)-20:self.level*20]
+
+    def totalprogress(self):
+        # turns %
+        self.readjsonword()
+        return (self.level * 100) / (len(self.wordsid)/20)
+    # ----------------------About Game ---------------------------------
+
+    def play(self):
+        for id in self.get_level_words():
+            print(self.wordsdata[str(id)]["Dutch"])
+
+
+a = Users()
+a.play()
