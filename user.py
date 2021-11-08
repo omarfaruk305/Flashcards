@@ -42,9 +42,16 @@ class Users:
             self.wordsdata = json.load(f)
         self.wordsid = [i for i in range(1, len(self.wordsdata.keys()))]
 
-    def get_level_words(self):
+    def get_level_id(self):
         self.readjsonword()
-        return self.wordsid[(self.level*20)-20:self.level*20]
+        self.levelid = self.wordsid[(self.level*20)-20:self.level*20]
+        return self.levelid
+
+    def levelcheck(self):
+        if len(self.levelid) == 0:
+            self.level += 1
+            Users.save_to_json(self)
+            self.get_level_id()
 
     def totalprogress(self):
         # turns %
@@ -52,10 +59,14 @@ class Users:
         return (self.level * 100) / (len(self.wordsid)/20)
     # ----------------------About Game ---------------------------------
 
-    def play(self):
+
+"""    def play(self):
         for id in self.get_level_words():
-            print(self.wordsdata[str(id)]["Dutch"])
+            print(self.wordsdata[str(id)]["Dutch"])"""
 
-
-a = Users()
-a.play()
+"""
+isim = Users("omer", 7)
+for id in isim.get_level_words():
+    print(isim.wordsdata[str(id)]["Dutch"])
+"""
+isim = Users("faruk", 2)

@@ -1,7 +1,8 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from user import Users
 
+from user import Users
+import time
 user = Users()
 
 
@@ -200,6 +201,8 @@ class Menuscreen_window(object):
 
     def play(self):
         wordscreenui.setupUi(MainWindow)
+        MainWindow.update()
+        wordscreenui.playgame()
 
     def quit(self):
         Users.save_to_json(user)
@@ -327,8 +330,6 @@ class Wordscreen_window(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Words game"))
-        self.wordcard_label.setToolTip(_translate(
-            "MainWindow", "<html><head/><body><p>asd</p></body></html>"))
         self.wordcard_label.setWhatsThis(_translate(
             "MainWindow", "<html><head/><body><p>English word</p></body></html>"))
         self.wordcard_label.setText(_translate("MainWindow", "Dutch\n"
@@ -341,10 +342,56 @@ class Wordscreen_window(object):
             _translate("MainWindow", "Remaining  word : "))
         self.timer.setText(_translate("MainWindow", " 3"))
         self.pushButton.clicked.connect(self.back)
+        self.green_button.clicked.connect(self.push_green_button)
+        self.red_button.clicked.connect(self.push_red_button)
 
-        for id in user.get_level_words():
-            self.wordcard_label.setText(_translate(
-                "MainWindow", {user.wordsdata[id]["Dutch"]}))
+    def sleeptime(self, n):
+        loop = QtCore.QEventLoop()
+        QtCore.QTimer.singleShot(n*1000, loop.quit)
+        loop.exec_()
+
+    def counter_on3(self):
+        self.timer.setText(str(3))
+        self.sleeptime(1)
+        self.timer.setText(str(2))
+        self.sleeptime(1)
+        self.timer.setText(str(1))
+        self.sleeptime(1)
+        self.timer.setText("---")
+
+    def playgame(self):
+        user.get_level_id()
+        self.index = 0
+        while len(user.levelid) >= 0:
+            if len(user.levelid) == 0:
+                user.levelcheck()
+            else:
+                try:
+                    self.id = user.levelid[self.index]
+                except IndexError:
+                    self.index = 0
+                    continue
+                self.green_button.setEnabled(False)
+                self.red_button.setEnabled(False)
+                self.remaining_word_label.setText(
+                    "Remaining Words : " + str(len(user.levelid)))
+                self.wordcard_label.setText(
+                    user.wordsdata[str(self.id)]["Dutch"])
+                # self.counter_on3()
+                self.wordcard_label.setText(
+                    user.wordsdata[str(self.id)]["ENG"])
+                self.green_button.setEnabled(True)
+                self.red_button.setEnabled(True)
+                self.sleeptime(1)
+
+    def push_green_button(self):
+        print("self id : ", self.id)
+        print("fonksiyon içinde : ", user.levelid)
+        user.levelid.remove(self.id)
+
+    def push_red_button(self):
+        print("index : ", self.index)
+        self.index += 1
 
     def back(self):
         self.menuscreenui = Menuscreen_window()
