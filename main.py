@@ -1,8 +1,9 @@
 import sys
+from typing import final
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import os
 from user import Users
-import time
+
 user = Users()
 
 
@@ -200,9 +201,8 @@ class Menuscreen_window(object):
         self.quitbutton.clicked.connect(self.quit)
 
     def play(self):
+
         wordscreenui.setupUi(MainWindow)
-        MainWindow.update()
-        wordscreenui.playgame()
 
     def quit(self):
         Users.save_to_json(user)
@@ -345,6 +345,13 @@ class Wordscreen_window(object):
         self.green_button.clicked.connect(self.push_green_button)
         self.red_button.clicked.connect(self.push_red_button)
 
+        try:
+            self.playgame()
+
+        except RuntimeError:
+            Users.save_to_json(user)
+            welcomescreenui.setmenuscreenforuser()
+
     def sleeptime(self, n):
         loop = QtCore.QEventLoop()
         QtCore.QTimer.singleShot(n*1000, loop.quit)
@@ -359,6 +366,20 @@ class Wordscreen_window(object):
         self.sleeptime(1)
         self.timer.setText("---")
 
+    def totaltime(self):
+        s = 0
+        m = 0
+
+        while s <= 60:
+            os.system('cls')
+            self.total_time_label.setText(
+                "%d : %d " % (m, s))
+            self.sleeptime(1)
+            s += 1
+            if s == 60:
+                m += 1
+                s = 0
+
     def playgame(self):
         user.get_level_id()
         self.index = 0
@@ -366,6 +387,7 @@ class Wordscreen_window(object):
             if len(user.levelid) == 0:
                 user.levelcheck()
             else:
+                self.level_label.setText("Level : " + str(user.level))
                 try:
                     self.id = user.levelid[self.index]
                 except IndexError:
@@ -377,9 +399,15 @@ class Wordscreen_window(object):
                     "Remaining Words : " + str(len(user.levelid)))
                 self.wordcard_label.setText(
                     user.wordsdata[str(self.id)]["Dutch"])
-                # self.counter_on3()
+                self.wordcard_label.setStyleSheet("border-radius:20px;font: 25pt \"Berlin Sans FB\";\n"
+                                                  "color:rgb(255, 255, 255) ;\n"
+                                                  "background-color: rgb(85, 85, 255);")
+                self.counter_on3()
                 self.wordcard_label.setText(
                     user.wordsdata[str(self.id)]["ENG"])
+                self.wordcard_label.setStyleSheet("border-radius:20px;font: 25pt \"Berlin Sans FB\";\n"
+                                                  "color:rgb(255, 255, 255) ;\n"
+                                                  "background-color: rgb(38, 180, 182);")
                 self.green_button.setEnabled(True)
                 self.red_button.setEnabled(True)
                 self.sleeptime(1)
@@ -394,8 +422,6 @@ class Wordscreen_window(object):
         self.index += 1
 
     def back(self):
-        self.menuscreenui = Menuscreen_window()
-        self.menuscreenui.setupUi(MainWindow)
         Users.save_to_json(user)
         welcomescreenui.setmenuscreenforuser()
 
