@@ -187,6 +187,18 @@ class Menuscreen_window(object):
                                        "color :rgb(0, 0, 127)")
         self.level_label.setAlignment(QtCore.Qt.AlignCenter)
         self.level_label.setObjectName("level_label")
+
+        self.resetbutton = QtWidgets.QPushButton(self.mainmenu_widget)
+        self.resetbutton.setObjectName = ("resetbutton")
+        self.resetbutton.setGeometry(QtCore.QRect(500, 300, 51, 41))
+        self.resetbutton.setStyleSheet("border-radius:20px;font: 10pt \"Berlin Sans FB\";\n"
+                                       "background-color: rgb(255, 255, 255);\n"
+                                       "color :rgb(0, 0, 127)")
+        icon = QtGui.QIcon()
+        icon.addFile("reset.png", QtCore.QSize(),
+                     QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.resetbutton.setIcon(icon)
+        self.resetbutton.setIconSize(QtCore.QSize(30, 30))
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -202,6 +214,11 @@ class Menuscreen_window(object):
         self.level_label.setText(_translate("MainWindow", "Level :"))
         self.playbutton.clicked.connect(self.play)
         self.quitbutton.clicked.connect(self.quit)
+        self.resetbutton.clicked.connect(self.push_resetbutton)
+
+    def push_resetbutton(self):
+        user.level = 1
+        welcomescreenui.setmenuscreenforuser()
 
     def play(self):
 
@@ -352,7 +369,7 @@ class Wordscreen_window(object):
         try:
             threading.Thread(target=self.playgame).start()
             threading.Thread(target=self.totaltime).start()
-            # self.playgame()
+
         except RuntimeError:
             Users.save_to_json(user)
             welcomescreenui.setmenuscreenforuser()
@@ -391,7 +408,6 @@ class Wordscreen_window(object):
         user.get_level_id()
         self.index = 0
         while len(user.levelid) >= 0:
-            print("while döngüsünde lsite : ", user.levelid)
             if len(user.levelid) == 0:
                 user.levelcheck()
             else:
@@ -430,14 +446,13 @@ class Wordscreen_window(object):
                         break
 
     def push_green_button(self):
-        print("self id : ", self.id)
-        print("fonksiyon içinde : ", user.levelid)
+
         user.levelid.remove(self.id)
         self.remaining_word_label.setText(
             "Remaining Words : " + str(len(user.levelid)))
 
     def push_red_button(self):
-        print("index : ", self.index)
+
         self.index += 1
 
     def back(self):
