@@ -1,8 +1,10 @@
 {
   "omer": {
-    "level": 9
+    "level": 13,
+    "totaltime": 189
   },
   "yusuf": {
-    "level": 4
+    "level": 4,
+    "totaltime": 0
   }
 }

@@ -4,9 +4,10 @@ from os import name
 
 class Users:
 
-    def __init__(self, name="Name", level=1):
+    def __init__(self, name="Name", level=1, totaltime=0):
         self.name = name
         self.level = level
+        self.totaltime = totaltime
 
     @classmethod
     def readjson_user(cls):
@@ -27,7 +28,8 @@ class Users:
         }
         }"""
         cls.readjson_user()
-        cls.users_dict[self.name] = {"level": self.level}
+        cls.users_dict[self.name] = {
+            "level": self.level, "totaltime": self.totaltime}
         with open("users.json", "w") as f:
             json.dump(cls.users_dict, f, indent=2)
 

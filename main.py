@@ -3,6 +3,7 @@ from typing import final
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 from user import Users
+import threading
 
 user = Users()
 
@@ -110,8 +111,10 @@ class Welcomescreen_window(object):
         for i, j in user.users_dict.items():
             if name == i:
                 level = j["level"]
+                totaltime = j["totaltime"]
                 user.name = name
                 user.level = level
+                user.totaltime = totaltime
                 break
 
         if user.checkname():
@@ -274,7 +277,7 @@ class Wordscreen_window(object):
                                        "color: rgb(255, 255, 255);")
         self.level_label.setObjectName("level_label")
         self.total_time_label = QtWidgets.QLabel(self.game_widget)
-        self.total_time_label.setGeometry(QtCore.QRect(310, 30, 191, 31))
+        self.total_time_label.setGeometry(QtCore.QRect(310, 30, 211, 31))
         self.total_time_label.setStyleSheet("font: 14pt \"Berlin Sans FB\";\n"
                                             "\n"
                                             "background-color: rgb(85, 85, 255);\n"
@@ -344,10 +347,12 @@ class Wordscreen_window(object):
         self.pushButton.clicked.connect(self.back)
         self.green_button.clicked.connect(self.push_green_button)
         self.red_button.clicked.connect(self.push_red_button)
-
+        self.green_button.setCheckable(True)
+        self.red_button.setCheckable(True)
         try:
-            self.playgame()
-
+            threading.Thread(target=self.playgame).start()
+            threading.Thread(target=self.totaltime).start()
+            # self.playgame()
         except RuntimeError:
             Users.save_to_json(user)
             welcomescreenui.setmenuscreenforuser()
@@ -367,27 +372,33 @@ class Wordscreen_window(object):
         self.timer.setText("---")
 
     def totaltime(self):
-        s = 0
-        m = 0
+        m = user.totaltime//60
+        s = user.totaltime % 60
 
         while s <= 60:
             os.system('cls')
             self.total_time_label.setText(
-                "%d : %d " % (m, s))
+                "Minute : %d Second : %d " % (m, s))
             self.sleeptime(1)
             s += 1
+            user.totaltime += 1
             if s == 60:
                 m += 1
+                user.totaltime += 60*m
                 s = 0
 
     def playgame(self):
         user.get_level_id()
         self.index = 0
         while len(user.levelid) >= 0:
+            print("while döngüsünde lsite : ", user.levelid)
             if len(user.levelid) == 0:
                 user.levelcheck()
             else:
                 self.level_label.setText("Level : " + str(user.level))
+                self.remaining_word_label.setText(
+                    "Remaining Words : " + str(len(user.levelid)))
+
                 try:
                     self.id = user.levelid[self.index]
                 except IndexError:
@@ -395,8 +406,7 @@ class Wordscreen_window(object):
                     continue
                 self.green_button.setEnabled(False)
                 self.red_button.setEnabled(False)
-                self.remaining_word_label.setText(
-                    "Remaining Words : " + str(len(user.levelid)))
+
                 self.wordcard_label.setText(
                     user.wordsdata[str(self.id)]["Dutch"])
                 self.wordcard_label.setStyleSheet("border-radius:20px;font: 25pt \"Berlin Sans FB\";\n"
@@ -410,12 +420,21 @@ class Wordscreen_window(object):
                                                   "background-color: rgb(38, 180, 182);")
                 self.green_button.setEnabled(True)
                 self.red_button.setEnabled(True)
-                self.sleeptime(1)
+                while True:
+                    self.sleeptime(0.1)
+                    if self.green_button.isChecked():
+                        self.green_button.setChecked(False)
+                        break
+                    elif self.red_button.isChecked():
+                        self.red_button.setChecked(False)
+                        break
 
     def push_green_button(self):
         print("self id : ", self.id)
         print("fonksiyon içinde : ", user.levelid)
         user.levelid.remove(self.id)
+        self.remaining_word_label.setText(
+            "Remaining Words : " + str(len(user.levelid)))
 
     def push_red_button(self):
         print("index : ", self.index)
