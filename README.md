@@ -6,8 +6,7 @@
 - Worked with 4 people as a team.
 - Main goal is the project try to people learn words by cards. Dutch-Eng
 - Created in 1.5 week.
-* You can install the game from below of installer file . 
-* Without install Created exe for Windows and you can just click to exe without download Python or anything else.
+
 
 ## Tools
 - PyQt5 for interface
