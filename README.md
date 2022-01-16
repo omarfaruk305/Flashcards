@@ -20,11 +20,13 @@ There is a 250 level and each level has 20 word. It ordered by easy to hard.
 
 ### Game Play
 -You have to have username which is unique . The system check whether have your username in Json data while you login.
+
 ![Welcomescreen](https://user-images.githubusercontent.com/70334899/149658380-e65b37ab-2d03-458e-8565-c0c62ef8250f.PNG)
 
 
 -After sign in you  pass to menu screen.
-![Menu](https://user-images.githubusercontent.com/70334899/149658396-39f57ddf-dd80-4392-8702-4cc8fb89479b.PNG
+
+![Menu](https://user-images.githubusercontent.com/70334899/149658396-39f57ddf-dd80-4392-8702-4cc8fb89479b.PNG)
 
 -You see your current level.
 
