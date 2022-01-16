@@ -59,16 +59,4 @@ class Users:
         # turns %
         self.readjsonword()
         return (self.level * 100) / (len(self.wordsid)/20)
-    # ----------------------About Game ---------------------------------
 
-
-"""    def play(self):
-        for id in self.get_level_words():
-            print(self.wordsdata[str(id)]["Dutch"])"""
-
-"""
-isim = Users("omer", 7)
-for id in isim.get_level_words():
-    print(isim.wordsdata[str(id)]["Dutch"])
-"""
-isim = Users("faruk", 2)

@@ -1,10 +1,14 @@
 {
-  "user": {
+  "omer": {
     "level": 1,
-    "totaltime": 562
+    "totaltime": 9
   },
-  "user2": {
+  "asd": {
     "level": 1,
-    "totaltime": 6
+    "totaltime": 0
+  },
+  "123": {
+    "level": 1,
+    "totaltime": 11
   }
 }
