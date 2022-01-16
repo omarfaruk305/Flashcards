@@ -2,7 +2,7 @@
 
 # Flashcards
 ## About Project
-- This project was done in **[Pycoders Bootcamp]**(https://github.com/pycoders-nl) as a challenge after Python module finished.
+- This project was done in [Pycoders Bootcamp](https://github.com/pycoders-nl) as a challenge after Python module finished.
 - Worked with 4 people as a team.
 - Main goal is the project try to people learn words by cards. Dutch-Eng
 - Created in 1.5 week.
