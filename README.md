@@ -28,9 +28,11 @@ There is a 250 level and each level has 20 word. It ordered by easy to hard.
 
 ![Menu](https://user-images.githubusercontent.com/70334899/149658396-39f57ddf-dd80-4392-8702-4cc8fb89479b.PNG)
 
--You see your current level.
+
 
 ### Inside the game 
+
+-You see your current level.
 
 ![image](https://user-images.githubusercontent.com/70334899/149659270-02ed4c96-ddb0-45b9-b4e9-3e6ada0188f3.png)
 
