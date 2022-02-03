@@ -4,14 +4,14 @@
 ## About Project
 - This project was done in [Pycoders Bootcamp](https://github.com/pycoders-nl) as a challenge after Python module finished.
 - Worked with 4 people as a team.
-- Main goal is the project try to people learn words by cards. Dutch-Eng
+- The Main goal is the project try to people learn words by cards. Dutch-Eng
 - Created in 1.5 week.
 
 
 ## Tools
 - PyQt5 for interface
 - OOP
-- Python File Handling with Json for hold data
+- Python File Handling with Json for holding data
 
 ## About Game
 ### Information
